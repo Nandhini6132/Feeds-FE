@@ -15,10 +15,13 @@ const refreshAccessToken = async () => {
   }
 };
 
-const apiCLient = async (endpoint: string, method = {}) => {
+const apiCLient = async <T = any>(
+  endpoint: string,
+  method: RequestInit = {}
+): Promise<T> => {
   const token = localStorage.getItem('token');
 
-  const config = {
+  const config: RequestInit= {
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
@@ -31,7 +34,7 @@ const apiCLient = async (endpoint: string, method = {}) => {
   if (response.status === 401) {
     const refreshed = await refreshAccessToken();
     if (refreshed) {
-      return apiCLient(endpoint, config);
+      return apiCLient<T>(endpoint, config);
     }
   }
   try {
@@ -47,3 +50,4 @@ const apiCLient = async (endpoint: string, method = {}) => {
 };
 
 export default apiCLient;
+
