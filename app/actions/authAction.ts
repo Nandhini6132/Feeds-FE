@@ -1,7 +1,7 @@
 import apiCLient from '../api/apiClient';
 
 interface bodyType {
-  name: string;
+  name?: string;
   email: string;
   password: string;
 }
@@ -25,3 +25,4 @@ export const test = () => {
     method: 'GET',
   });
 };
+
