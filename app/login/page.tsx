@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 import { loginUser } from '../actions/authAction';
 import {useRouter} from 'next/navigation'
 
-export type LoginBody = {
+type LoginBody = {
   email: string;
   password: string;
 };
@@ -107,5 +107,6 @@ export default function Login() {
     </div>
   );
 }
+
 
 
