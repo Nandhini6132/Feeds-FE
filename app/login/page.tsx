@@ -7,6 +7,12 @@ import * as Yup from 'yup';
 import { loginUser } from '../actions/authAction';
 import {useRouter} from 'next/navigation'
 
+export type LoginBody = {
+  email: string;
+  password: string;
+};
+
+
 export default function Login() {
   const router=useRouter()
   const [loginFields, setLoginFields] = useState({
@@ -21,7 +27,7 @@ export default function Login() {
   async function handleSubmit(values: { email: string; password: string }) {
     console.log(values, 'login');
     try {
-      const response = await loginUser(values);
+      const response = await loginUser(values:LoginBody);
       localStorage.setItem('accessToken',response.accessToken)
       console.log(response);
       router.push('/')
@@ -101,3 +107,4 @@ export default function Login() {
     </div>
   );
 }
+
