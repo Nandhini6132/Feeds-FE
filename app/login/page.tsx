@@ -24,10 +24,10 @@ export default function Login() {
     email: Yup.string().email('Invalid email').required('Email is required'),
     password: Yup.string().required('Password is required'),
   });
-  async function handleSubmit(values: { email: string; password: string }) {
+  async function handleSubmit(values:LoginBody) {
     console.log(values, 'login');
     try {
-      const response = await loginUser(values:LoginBody);
+      const response = await loginUser(values);
       localStorage.setItem('accessToken',response.accessToken)
       console.log(response);
       router.push('/')
@@ -107,4 +107,5 @@ export default function Login() {
     </div>
   );
 }
+
 
